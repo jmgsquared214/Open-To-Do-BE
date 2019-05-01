@@ -6,6 +6,10 @@ class UserSerializer < ActiveModel::Serializer
   # the User model, where it belongs, rather than
   # (re)defining it here.
 
+  def full_name
+    object.full_name
+  end
+
   def created_at
     object.created_at.strftime('%B %d, %Y')
   end
