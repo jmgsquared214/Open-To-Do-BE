@@ -4,6 +4,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.string :item_name
       t.string :description
       t.references :list_name, foreign_key: true
+      t.references :list, foreign_key: true
 
       t.timestamps
     end
