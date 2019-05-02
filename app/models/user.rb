@@ -8,7 +8,4 @@ class User < ApplicationRecord
     hash
   end
 
-  def full_name
-    object.full_name
-  end
 end
