@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe Api::UsersController, type: :controller do
+RSpec.describe Api::ListsController, type: :controller do
 
-  describe "GET #index" do
+  describe "GET #create" do
     it "returns http success" do
-      get :index
+      get :create
       expect(response).to have_http_status(:success)
     end
   end
