@@ -12,6 +12,6 @@ class Api::ItemsController < ApiController
 
   private
   def item_params
-    params.require(:item).permit(:email, :password, :list_id)
+    params.require(:item).permit(:email, :password, :list_id, :description, :item_name)
   end
 end
