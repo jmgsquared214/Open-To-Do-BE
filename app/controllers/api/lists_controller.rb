@@ -6,12 +6,12 @@ class Api::ListsController < ApiController
     if list.save
       render json: list
     else
-      render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   private
   def list_params
-    params.require(:list).permit(:email, :password)
+    params.require(:test_list).permit(:email, :password, :user_id)
   end
 end
