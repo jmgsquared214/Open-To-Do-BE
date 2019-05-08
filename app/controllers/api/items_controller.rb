@@ -6,6 +6,7 @@ class Api::ItemsController < ApiController
     if item.save
       render json: item
     else
+      puts "there was an error"
       render json: { errors: item.errors.full_messages }, status: :unprocessable_entity
     end
   end
