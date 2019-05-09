@@ -1,17 +1,20 @@
-class Api::ListsController < ApiController
-  before_action :authenticated?
+module Api::V1
+  class ListsController < ApiController
+    before_action :authenticated?
 
-  def create
-    list = List.new(list_params)
-    if list.save
-      render json: list
-    else
-      render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
+     def create
+      user = User.find(params[:user_id])
+      list = user.lists.create(list_params)
+      if list.save
+        render json: list
+      else
+        render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
+      end
     end
-  end
 
-  private
-  def list_params
-    params.require(:test_list).permit(:email, :password, :user_id, :list_name)
+     private
+    def list_params
+      params.require(:list).permit(:title, :private)
+    end
   end
 end
