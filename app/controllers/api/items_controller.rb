@@ -1,18 +1,20 @@
-class Api::ItemsController < ApiController
-  before_action :authenticated?
+module Api::V1
+  class ItemsController < ApiController
+    before_action :authenticated?
 
-  def create
-    item = Item.new(item_params)
-    if item.save
-      render json: item
-    else
-      puts "there was an error"
-      render json: { errors: item.errors.full_messages }, status: :unprocessable_entity
+     def create
+      list = List.find(params[:list_id])
+      item = list.items.create(item_params)
+      if item.save
+        render json: item
+      else
+        render json: { errors: item.errors.full_messages }, status: :unprocessable_entity
+      end
     end
-  end
 
-  private
-  def item_params
-    params.require(:item).permit(:email, :password, :list_id, :description, :item_name)
+     private
+    def item_params
+      params.require(:item).permit(:description, :complete)
+    end
   end
 end
